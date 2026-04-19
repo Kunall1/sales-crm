@@ -8,24 +8,74 @@
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   body {
     @apply bg-surface-50 text-surface-800;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  ::selection {
+    @apply bg-brand-200/60 text-brand-900;
   }
 
   /* Custom scrollbar */
   ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
   }
   ::-webkit-scrollbar-track {
     @apply bg-transparent;
   }
   ::-webkit-scrollbar-thumb {
-    @apply bg-surface-300 rounded-full;
+    @apply bg-surface-200 rounded-full border-2 border-transparent bg-clip-padding;
   }
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-surface-400;
+    @apply bg-surface-300;
+  }
+
+  /* Smoother focus outlines */
+  :focus-visible {
+    outline: none;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-600 to-accent-600;
+  }
+
+  .bg-grid {
+    background-image: linear-gradient(to right, rgb(226 232 240 / 0.4) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(226 232 240 / 0.4) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .glass {
+    @apply bg-white/70 backdrop-blur-xl border border-white/60;
+  }
+
+  .glass-dark {
+    @apply bg-surface-900/70 backdrop-blur-xl border border-white/10;
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      110deg,
+      transparent 40%,
+      rgb(255 255 255 / 0.4) 50%,
+      transparent 60%
+    );
+    background-size: 200% 100%;
+    @apply animate-shimmer;
+  }
+
+  .scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 }

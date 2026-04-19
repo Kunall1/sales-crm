@@ -15,7 +15,7 @@ interface AnalyticsDashboardProps {
   leads: Lead[];
 }
 
-const CHART_COLORS = ["#3b8dff", "#6366f1", "#8b5cf6", "#f59e0b", "#f97316", "#22c55e", "#ef4444"];
+const CHART_COLORS = ["#2547f5", "#8b3bee", "#6366f1", "#f59e0b", "#f97316", "#22c55e", "#ef4444"];
 
 export default function AnalyticsDashboard({ leads }: AnalyticsDashboardProps) {
   const stats = useMemo(() => {
@@ -77,12 +77,12 @@ export default function AnalyticsDashboard({ leads }: AnalyticsDashboardProps) {
     <div className="space-y-6">
       {/* Stat Cards Row */}
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-6">
-        <StatCard label="Total Leads" value={stats.total} icon={<Users size={20} />} />
-        <StatCard label="Conversion Rate" value={`${stats.conversionRate}%`} icon={<TrendingUp size={20} />} />
-        <StatCard label="Revenue" value={formatCurrency(stats.totalRevenue)} icon={<DollarSign size={20} />} />
-        <StatCard label="Pipeline Value" value={formatCurrency(stats.pipelineValue)} icon={<Target size={20} />} />
-        <StatCard label="Closed Won" value={stats.won} icon={<CheckCircle2 size={20} />} />
-        <StatCard label="Closed Lost" value={stats.lost} icon={<XCircle size={20} />} />
+        <StatCard label="Total Leads" value={stats.total} icon={<Users size={18} />} accent="brand" />
+        <StatCard label="Conversion" value={`${stats.conversionRate}%`} icon={<TrendingUp size={18} />} accent="accent" />
+        <StatCard label="Revenue" value={formatCurrency(stats.totalRevenue)} icon={<DollarSign size={18} />} accent="success" />
+        <StatCard label="Pipeline" value={formatCurrency(stats.pipelineValue)} icon={<Target size={18} />} accent="warning" />
+        <StatCard label="Closed Won" value={stats.won} icon={<CheckCircle2 size={18} />} accent="success" />
+        <StatCard label="Closed Lost" value={stats.lost} icon={<XCircle size={18} />} accent="danger" />
       </div>
 
       {/* Charts Row */}
@@ -99,7 +99,7 @@ export default function AnalyticsDashboard({ leads }: AnalyticsDashboardProps) {
                 contentStyle={{ borderRadius: 8, border: "1px solid #e2e8f0", fontSize: 13 }}
                 formatter={(value: number) => [value, "Leads"]}
               />
-              <Bar dataKey="count" fill="#3b8dff" radius={[0, 4, 4, 0]} barSize={20} />
+              <Bar dataKey="count" fill="#2547f5" radius={[0, 4, 4, 0]} barSize={20} />
             </BarChart>
           </ResponsiveContainer>
         </Card>
@@ -139,7 +139,7 @@ export default function AnalyticsDashboard({ leads }: AnalyticsDashboardProps) {
             <XAxis dataKey="month" tick={{ fontSize: 12, fill: "#94a3b8" }} />
             <YAxis tick={{ fontSize: 12, fill: "#94a3b8" }} />
             <Tooltip contentStyle={{ borderRadius: 8, border: "1px solid #e2e8f0", fontSize: 13 }} />
-            <Area type="monotone" dataKey="total" stroke="#3b8dff" fill="#3b8dff" fillOpacity={0.1} name="New Leads" />
+            <Area type="monotone" dataKey="total" stroke="#2547f5" fill="#2547f5" fillOpacity={0.1} name="New Leads" />
             <Area type="monotone" dataKey="won" stroke="#22c55e" fill="#22c55e" fillOpacity={0.1} name="Won" />
             <Legend wrapperStyle={{ fontSize: 12 }} />
           </AreaChart>
